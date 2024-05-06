@@ -44,6 +44,11 @@ server.get('/*', (req, res) => {
   )
 })
 
+server.get('/api/v1/test/cookies', (req, res) => {
+  res.cookie('serverCookie', 'test', { maxAge: 90000, httpOnly: true })
+  res.json({ status: res.cookies })
+})
+
 server.use('/api/', (req, res) => {
   res.status(404)
   res.end()
